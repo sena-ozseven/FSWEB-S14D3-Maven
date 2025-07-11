@@ -27,7 +27,7 @@ public class Car {
 
     public String brake() {
         System.out.println("Class Name: " + getClass().getSimpleName());
-        return "the car is breaking";
+        return "the car is braking";
     }
 
 

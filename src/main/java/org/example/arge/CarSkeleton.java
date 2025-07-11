@@ -7,18 +7,37 @@ public class CarSkeleton {
 
     public String startEngine() {
         System.out.println("Class Name: " + getClass().getSimpleName());
-        return "car's engine is starting";
+        return getName() + "'s engine is starting";
     }
 
     public String drive() {
-        System.out.println("Class Name: " + getClass().getSimpleName());
-        return "car is driving";
+        runEngine(this);
+        return getName() + " is driving...";
 
     }
 
-    protected String runEngine() {
-        System.out.println("Class Name: " + getClass().getSimpleName());
-        return "engine is running";
+    protected void runEngine(CarSkeleton carSkeleton) {
+        if (carSkeleton instanceof ElectricCar) {
+            double avgKmPerCharge = ((ElectricCar) carSkeleton).getAvgKmPerCharge();
+            int batterySize = ((ElectricCar) carSkeleton).getBatterySize();
+            System.out.println("The car engine is starting with electric. Per charge: " + avgKmPerCharge + " battery size: " + batterySize);
+
+        } else if (carSkeleton instanceof HybridCar) {
+            double avgKmPerLitre = ((HybridCar) carSkeleton).getAvgKmPerLitre();
+            int batterySize = ((HybridCar) carSkeleton).getBatterySize();
+            int cylinders = ((HybridCar) carSkeleton).getCylinders();
+            System.out.println("The car engine is starting with hybrid. Per liter: " + avgKmPerLitre + " battery size: " + batterySize + " cylinders: " + cylinders);
+
+
+        } else if (carSkeleton instanceof  GasPoweredCar) {
+            double avgKmPerLitre = ((GasPoweredCar) carSkeleton).getAvgKmPerLitre();
+            int cylinders = ((GasPoweredCar) carSkeleton).getCylinders();
+            System.out.println("The car engine is starting with gas power. Per liter: " + avgKmPerLitre + " cylinders: " + cylinders);
+
+        } else {
+            System.out.println("Invalid car type!");
+        }
+
     }
 
     public String getName() {
